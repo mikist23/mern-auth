@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 
 function SignUp() {
   const [formData, setFormData] = useState({});
   const [error ,setError] = useState(false)
   const [loading,setLoading] = useState(false)
+  const navigate = useNavigate()
 
    const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -16,7 +17,7 @@ function SignUp() {
   
     try {
       setLoading(true)
-      const response = await axios.post('/api/auth', formData, {
+      const response = await axios.post('/api/auth/signup', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -30,7 +31,7 @@ function SignUp() {
         return
       }
       setError(false)
-      console.log(data);
+      navigate('/sign-in')
     } catch (error) {
       setLoading(false)
       setError(true)
