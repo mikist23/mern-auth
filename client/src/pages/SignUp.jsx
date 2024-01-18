@@ -6,6 +6,7 @@ import { Link,useNavigate } from "react-router-dom";
 function SignUp() {
   const [formData, setFormData] = useState({});
   const [error ,setError] = useState(false)
+  
   const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -77,7 +78,7 @@ function SignUp() {
           <span className="text-blue-500">Sign in</span>
         </Link>
         </div>
-      <p className='text-red-700 mt-5'>{error && 'Something went wrong!'}</p>
+      <p className='text-red-700 mt-5'>{error ? error || 'Something went wrong!' : ''}</p>
     </div>
   );
 }
